@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VEXORA — Espace membres</title>
+<meta name="description" content="Activez votre KEY VEXORA et téléchargez vos produits depuis votre espace membre.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237c3aed'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav"><div class="container nav-in">
+  <a class="brand" href="./">VEXORA<small>MEMBRES</small></a>
+  <nav>
+    <a class="btn ghost sm" data-discord href="#">Discord</a>
+    <a id="adminLink" class="btn ghost sm hidden" href="admin/">Administration</a>
+    <button id="logoutBtn" class="btn ghost sm hidden" type="button">Déconnexion</button>
+  </nav>
+</div></header>
+
+<div id="app">
+  <div id="loading" class="loader">Chargement…</div>
+
+  <section id="landing" class="container hero hidden">
+    <div>
+      <span class="eyebrow">Espace membres</span>
+      <h1>Vos accès VEXORA,<br><span>au même endroit.</span></h1>
+      <p class="lead">Connectez-vous, activez votre KEY et téléchargez vos produits en quelques secondes.</p>
+      <ul class="features">
+        <li><div class="ico">⚡</div><div><b>Activation instantanée</b><span>Entrez votre KEY, l’accès est débloqué immédiatement.</span></div></li>
+        <li><div class="ico">⬇️</div><div><b>Téléchargements centralisés</b><span>Retrouvez vos produits à tout moment sur votre compte.</span></div></li>
+        <li><div class="ico">💬</div><div><b>Support sur Discord</b><span>Une question ? La communauté VEXORA vous répond.</span></div></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2 id="authTitle">Connexion</h2>
+      <p class="sub" id="authSub">Accédez à votre espace membre.</p>
+      <div class="tabs"><button class="tab active" id="tabLogin" type="button">Connexion</button><button class="tab" id="tabRegister" type="button">Créer un compte</button></div>
+      <form id="authForm" novalidate>
+        <div id="nameWrap" class="hidden"><label class="lbl" for="authName">Pseudo</label><input id="authName" class="field" placeholder="Votre pseudo" autocomplete="nickname" maxlength="32"></div>
+        <label class="lbl" for="authEmail">Email</label>
+        <input id="authEmail" class="field" type="email" placeholder="vous@exemple.com" autocomplete="email">
+        <label class="lbl" for="authPass">Mot de passe</label>
+        <input id="authPass" class="field" type="password" placeholder="8 caractères minimum" autocomplete="current-password">
+        <button id="authSubmit" class="btn block" style="margin-top:18px" type="submit">Se connecter</button>
+        <div id="authMsg" class="msg"></div>
+      </form>
+    </div>
+  </section>
+
+  <main id="dashboard" class="container page hidden">
+    <div class="page-head">
+      <div><span class="eyebrow">Tableau de bord</span><h1>Bonjour, <span id="welcome"></span></h1><p>Gérez vos KEYS et retrouvez vos téléchargements.</p></div>
+    </div>
+    <div class="stats"><div class="card stat"><div class="k">Produits activés</div><div class="v" id="statCount">0</div></div></div>
+    <div class="stack">
+      <section class="card">
+        <h3>Activer une KEY</h3><p class="sub">Saisissez la clé fournie par VEXORA.</p>
+        <form id="keyForm" class="row"><input id="keyInput" class="field grow" placeholder="VEXORA-XXXX-XXXX-XXXX" spellcheck="false" autocomplete="off"><button id="keyBtn" class="btn" type="submit">Activer</button></form>
+        <div id="keyMsg" class="msg"></div>
+      </section>
+      <section class="card">
+        <div class="section-head"><h3 style="margin:0">Mes produits</h3><span class="badge used" id="countPill">0 produit</span></div>
+        <div id="access"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<footer class="footer"><div class="container">© 2026 VEXORA · <a data-discord href="#">Rejoindre le Discord</a></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/user.js"></script>
+</body>
+</html>

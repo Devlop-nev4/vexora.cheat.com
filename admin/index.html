@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>VEXORA — Administration</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237c3aed'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="nav"><div class="container nav-in">
+  <a class="brand" href="../">VEXORA<small>ADMIN</small></a>
+  <nav>
+    <a class="btn ghost sm" data-discord href="#">Discord</a>
+    <a class="btn ghost sm" href="../">Espace membres</a>
+    <button id="logoutBtn" class="btn ghost sm hidden" type="button">Déconnexion</button>
+  </nav>
+</div></header>
+
+<div id="app">
+  <div id="loading" class="loader">Chargement…</div>
+
+  <section id="login" class="container hidden" style="max-width:440px;padding-top:80px;padding-bottom:80px">
+    <div class="card">
+      <span class="eyebrow">Accès restreint</span>
+      <h2 style="margin-top:14px">Administration</h2><p class="sub">Connectez-vous avec votre compte administrateur.</p>
+      <form id="loginForm" novalidate>
+        <label class="lbl" for="aEmail">Email</label><input id="aEmail" class="field" type="email" autocomplete="email">
+        <label class="lbl" for="aPass">Mot de passe</label><input id="aPass" class="field" type="password" autocomplete="current-password">
+        <button id="aBtn" class="btn block" style="margin-top:18px" type="submit">Se connecter</button>
+        <div id="aMsg" class="msg"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="denied" class="container notice-box hidden"><h1>Accès refusé</h1><p style="color:var(--muted)">Ce compte n’a pas les droits d’administration.</p></section>
+
+  <main id="panel" class="container page hidden">
+    <div class="page-head"><div><span class="eyebrow">Administration</span><h1>Gestion des KEYS</h1><p>Toute KEY créée ici est immédiatement disponible pour tous les utilisateurs.</p></div></div>
+    <div class="stats">
+      <div class="card stat"><div class="k">KEYS au total</div><div class="v" id="sTotal">0</div></div>
+      <div class="card stat"><div class="k">Disponibles</div><div class="v" id="sFree">0</div></div>
+      <div class="card stat"><div class="k">Utilisées</div><div class="v" id="sUsed">0</div></div>
+    </div>
+    <div class="stack">
+      <section class="card">
+        <h3>Créer des KEYS</h3><p class="sub">Laissez le champ KEY vide pour générer automatiquement (jusqu’à 200 à la fois).</p>
+        <form id="createForm" novalidate>
+          <div class="grid2">
+            <div><label class="lbl" for="product" style="margin-top:0">Produit</label><input id="product" class="field" placeholder="Nom du produit"></div>
+            <div><label class="lbl" for="url" style="margin-top:0">Lien de téléchargement</label><input id="url" class="field" placeholder="https://… (optionnel)" spellcheck="false"></div>
+          </div>
+          <div class="grid2">
+            <div><label class="lbl" for="key">KEY manuelle</label><div class="row"><input id="key" class="field grow" placeholder="VEXORA-XXXX-XXXX-XXXX" spellcheck="false"><button id="gen" class="btn ghost" type="button">Générer</button></div></div>
+            <div><label class="lbl" for="qty">Quantité (génération auto)</label><input id="qty" class="field" type="number" min="1" max="200" value="1"></div>
+          </div>
+          <button id="cBtn" class="btn" style="margin-top:18px" type="submit">Créer</button>
+          <div id="cMsg" class="msg"></div>
+        </form>
+      </section>
+      <section class="card">
+        <div class="section-head"><h3 style="margin:0">Inventaire</h3>
+          <div class="row"><input id="search" class="field" placeholder="Rechercher…" style="width:220px"><select id="statusSel" class="field" style="width:150px"><option value="all">Toutes</option><option value="free">Disponibles</option><option value="used">Utilisées</option></select></div>
+        </div>
+        <div id="list"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden"><div class="card">
+  <h3>Modifier la KEY</h3><p class="sub">Le nouveau lien s’applique aussi aux utilisateurs ayant déjà activé cette KEY.</p>
+  <form id="editForm" novalidate>
+    <label class="lbl" for="eProduct">Produit</label><input id="eProduct" class="field">
+    <label class="lbl" for="eUrl">Lien de téléchargement</label><input id="eUrl" class="field" placeholder="https://…" spellcheck="false">
+    <div class="row" style="margin-top:18px"><button class="btn grow" type="submit">Enregistrer</button><button id="eCancel" class="btn ghost" type="button">Annuler</button></div>
+    <div id="eMsg" class="msg"></div>
+  </form>
+</div></div>
+
+<footer class="footer"><div class="container">© 2026 VEXORA</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="../config.js"></script>
+<script src="../assets/common.js"></script>
+<script src="../assets/admin.js"></script>
+</body>
+</html>
